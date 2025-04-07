@@ -7,7 +7,6 @@
     <title>Moto&Cia Honda</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
     <style>
         /* Estilo do menu */
         .navbar {
@@ -44,6 +43,7 @@
         }
 
         .carousel-item {
+            height: 100vh;
             background-size: cover;
             background-position: center;
         }
@@ -56,41 +56,233 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
-            z-index: 1; /* Reduzido para ficar abaixo dos controles */
+            z-index: 1;
         }
 
         .carousel-control-prev,
         .carousel-control-next {
-            z-index: 3; /* Garante que fiquem acima do overlay */
+            z-index: 3;
         }
 
-        /* Ajustes responsivos */
-        @media (max-width: 767px) {
-            .navbar-nav {
-                text-align: center;
+        /* Estilo do Botão Atualizado */
+        .hero-cta {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            padding: 0.5rem 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            background: linear-gradient(45deg, rgba(255, 68, 68, 0), rgba(255, 45, 45, 0));
+            backdrop-filter: blur(5px);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .hero-cta:hover {
+            transform: translate(-50%, -50%) scale(1.03);
+            background: linear-gradient(45deg, rgba(255, 45, 45, 0.95), rgba(255, 26, 26, 0.95));
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-cta i {
+            font-size: 1.4rem;
+            animation: pulse 2.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.9;
             }
 
-            .navbar-nav .nav-item {
-                margin-bottom: 10px;
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
             }
 
-            .carousel-item {
-                background-size: contain;
-                background-repeat: no-repeat;
-                height: auto; /* Remove a altura fixa */
-            }
-
-            /* Ajustar o carrossel para ficar na parte superior em dispositivos móveis */
-            .hero-carousel {
-                position: static; /* Remover o posicionamento relativo */
+            100% {
+                transform: scale(1);
+                opacity: 0.9;
             }
         }
 
-        @media (max-width: 576px) {
-            .navbar-brand img {
-                max-width: 100px; /* Reduzir o tamanho da logo em telas pequenas */
+        /* Street Section Styles */
+        .street-section {
+            background: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 2rem !important;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #ff4444;
+            border-radius: 2px;
+            animation: titleLine 1s ease-out;
+        }
+
+        .title-text {
+            display: block;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .moto-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardEntrance 0.6s ease forwards;
+
+            height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+        }
+
+        .moto-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .moto-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .moto-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .moto-card:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        .moto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            height: 200px; /* altura fixa para todas as imagens */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #fff;
+
+        }
+
+        .card-image img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            padding: 15px;
+
+            
+            /* Espaço ao redor da imagem */
+        }
+
+        /* Ajuste no hover para manter a proporção */
+        .moto-card:hover img {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .card-content h3 {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-content h4 {
+            color: #ff4444;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .btn-moto {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-moto:hover {
+            background: #e63939;
+            transform: translateX(5px);
+        }
+
+        /* Animations */
+        @keyframes cardEntrance {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
+
+        @keyframes titleLine {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+
+            to {
+                width: 80px;
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .moto-card {
+                margin-bottom: 1.5rem;
+            }
+        }
+        
     </style>
 </head>
 
@@ -98,20 +290,25 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#"><img src="/logo-mec.png.webp" alt="Logo Moto&Cia"></a>
+            <a class="navbar-brand" href="#"><img src="assets/img/logo-mec.png.webp" alt="Logo Moto&Cia"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav d-flex gap-2">
                     <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-bicycle me-2"></i>Motos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-info-circle me-2"></i>Sobre Nós</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-bicycle me-2"></i>Seminovas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-tools me-2"></i>Assistência</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-info-circle me-2"></i>Sobre
+                            Nós</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-bicycle me-2"></i>Seminovas</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-tools me-2"></i>Assistência</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-gear me-2"></i>Peças</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-shop me-2"></i>Loja</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-envelope me-2"></i>Contato</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person-badge me-2"></i>Trabalhe Conosco</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-envelope me-2"></i>Contato</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person-badge me-2"></i>Trabalhe
+                            Conosco</a></li>
                 </ul>
             </div>
         </div>
@@ -120,10 +317,30 @@
     <!-- Hero Carousel -->
     <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active" style="background-image: url('/banner01.jpg');"></div>
-            <div class="carousel-item" style="background-image: url('/banner02.jpg');"></div>
-            <div class="carousel-item" style="background-image: url('/banner03.jpg');"></div>
-            <div class="carousel-item" style="background-image: url('/banner04.jpg');"></div>
+            <div class="carousel-item active" style="background-image: url('assets/img/banner01.jpg');">
+                <button class="hero-cta">
+                    <i class="bi bi-currency-exchange"></i>
+                    Compramos sua moto
+                </button>
+            </div>
+            <div class="carousel-item" style="background-image: url('assets/img/banner02.jpg');">
+                <button class="hero-cta">
+                    <i class="bi bi-currency-exchange"></i>
+                    Compramos sua moto
+                </button>
+            </div>
+            <div class="carousel-item" style="background-image: url('assets/img/banner03.jpg');">
+                <button class="hero-cta">
+                    <i class="bi bi-currency-exchange"></i>
+                    Compramos sua moto
+                </button>
+            </div>
+            <div class="carousel-item" style="background-image: url('assets/img/banner04.jpg');">
+                <button class="hero-cta">
+                    <i class="bi bi-currency-exchange"></i>
+                    Compramos sua moto
+                </button>
+            </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -134,6 +351,275 @@
             <span class="visually-hidden">Próximo</span>
         </button>
     </div>
+
+    <!-- Adicione isto após o Hero Carousel -->
+    <section class="street-section py-5">
+        <div class="container">
+            <!-- Title -->
+            <h2 class="section-title text-center mb-5 position-relative">
+                <span class="title-text">Escolha sua OKM</span>
+                Street
+            </h2>
+
+            <!-- Cards Grid -->
+            <div class="row g-4 animate-cards">
+                <!-- CARD 01 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="assets/img/motos/cb300f.jpg" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Aquela Twistada​</h3>
+                            <h4>CB 300F TWISTER</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 02 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="assets/img/motos/honda-adv.webp" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Entre no modo aventura​</h3>
+                            <h4>HONDA ADV</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 03 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="assets/img/motos/PCX-azul.webp" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Você no ritmo da cidade​</h3>
+                            <h4>PCX 150</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 04 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="assets/img/motos/elite-125.png.webp" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Chegou para movimentar​</h3>
+                            <h4>Elite 125</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 05 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="assets/img/motos/cb-650-r-1024x523.png.webp" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Não siga tendências​</h3>
+                            <h4>CB 650R</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 06 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="assets/img/motos/CB-500F-cinza_0.png.webp" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Showtime​</h3>
+                            <h4>CB 500F</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 07 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="assets/img/motos/160-cg-fan-1024x576.webp" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Para todos os caminhos​</h3>
+                            <h4>CG 160 FAN</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 08 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="assets/img/motos/160-cg-cargo.webp" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Para todos os caminhos</h3>
+                            <h4>CG 160 CARGO</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 09 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="assets/img/motos/pop-110.png.webp" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Se é pop, é top​</h3>
+                            <h4>POP 110i ES</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 10 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="assets/img/motos/cg-160-titan.webp" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Acelere seu dia a dia​</h3>
+                            <h4>CG 160 TITAN</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 11 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="assets/img/motos/biz-125-es.webp" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Leve a vida numa Honda​</h3>
+                            <h4>BIZ 125 ES</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 12 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="assets/img/motos/biz-1125.png.webp" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Leve a vida numa Honda​</h3>
+                            <h4>BIZ 125 EX</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 13 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="assets/img/motos/firblack-1536x784.png.webp" alt="Moto" style="width: 100%; height: 180px; object-fit: cover;">
+                        </div>
+                        <div class="card-content">
+                            <h3>Na máxima potência​</h3>
+                            <h4>CB 1000R Black Edition</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 14 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="assets/img/motos/cg-160-start-1024x576.webp" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Para todos os caminhos​</h3>
+                            <h4>CG 160 START</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 15 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="assets/img/motos/1000R-1024x523.webp" alt="Moto" style="width: 100%; height: 200px; object-fit: cover;">
+                        </div>
+                        <div class="card-content">
+                            <h3>Na máxima potência​</h3>
+                            <h4>CB 300F TWISTER</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -161,4 +647,5 @@
         });
     </script>
 </body>
+
 </html>
