@@ -36,6 +36,28 @@
             background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(200,200,200, 0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
         }
 
+        /* Estilo do Dropdown */
+        .navbar .dropdown-menu {
+            background-color: #2a2a2a;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .navbar .dropdown-menu .dropdown-item {
+            color: #e0e0e0;
+            font-weight: 500;
+            padding: 0.75rem 1.25rem;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .navbar .dropdown-menu .dropdown-item:hover {
+            background-color: #1e1e1e;
+            color: #ff4444;
+        }
+
+
         /* Estilo do Carrossel */
         .hero-carousel {
             width: 100%;
@@ -162,9 +184,9 @@
             animation: cardEntrance 0.6s ease forwards;
 
             height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .moto-card:nth-child(1) {
@@ -189,12 +211,12 @@
         }
 
         .card-image {
-            height: 200px; /* altura fixa para todas as imagens */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: #fff;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #fff;
 
         }
 
@@ -206,9 +228,6 @@
             object-fit: contain;
             transition: transform 0.3s ease;
             padding: 15px;
-
-            
-            /* Espaço ao redor da imagem */
         }
 
         /* Ajuste no hover para manter a proporção */
@@ -282,7 +301,20 @@
                 margin-bottom: 1.5rem;
             }
         }
-        
+
+
+        @media (max-width: 768px) {
+            .carousel-item:first-child {
+                background-image: url('/fundomobile.png') !important;
+                background-size: cover;
+                background-position: center;
+            }
+
+            .carousel-item:first-child::before {
+                background: rgba(0, 0, 0, 0.3);
+                /* opcional, se quiser escurecer um pouco */
+            }
+        }
     </style>
 </head>
 
@@ -296,7 +328,18 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav d-flex gap-2">
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-bicycle me-2"></i>Motos</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="motosDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bicycle me-2"></i>Motos
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="motosDropdown">
+                            <li><a class="dropdown-item" href="#street">Street</a></li>
+                            <li><a class="dropdown-item" href="#adventure">Adventure</a></li>
+                            <li><a class="dropdown-item" href="#offroad">Off Road</a></li>
+                            <li><a class="dropdown-item" href="#sport">Sport</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-info-circle me-2"></i>Sobre
                             Nós</a></li>
                     <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-bicycle me-2"></i>Seminovas</a>
@@ -352,8 +395,8 @@
         </button>
     </div>
 
-    <!-- Adicione isto após o Hero Carousel -->
-    <section class="street-section py-5">
+    <!-- Section Street -->
+    <section id="street" class="street-section py-5">
         <div class="container">
             <!-- Title -->
             <h2 class="section-title text-center mb-5 position-relative">
@@ -571,7 +614,8 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="moto-card">
                         <div class="card-image">
-                            <img src="/firblack-1536x784.png.webp" alt="Moto" style="width: 100%; height: 180px; object-fit: cover;">
+                            <img src="/firblack-1536x784.png.webp" alt="Moto"
+                                style="width: 100%; height: 180px; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h3>Na máxima potência​</h3>
@@ -605,7 +649,8 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="moto-card">
                         <div class="card-image">
-                            <img src="/1000R-1024x523.webp" alt="Moto" style="width: 100%; height: 200px; object-fit: cover;">
+                            <img src="/1000R-1024x523.webp" alt="Moto"
+                                style="width: 100%; height: 200px; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h3>Na máxima potência​</h3>
@@ -621,9 +666,431 @@
         </div>
     </section>
 
+    <!-- Seção Adventure -->
+    <section id="adventure" class="adventure-section py-5" style="background-color: #eaf4f8;">
+
+        <div class="container">
+            <!-- Título -->
+            <h2 class="section-title text-center mb-5 position-relative">
+                <span class="title-text">Viva a liberdade</span>
+                Adventure
+            </h2>
+
+            <!-- Cards Grid -->
+            <div class="row g-4 animate-cards">
+                <!-- Card 01 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="/xre300.jpg" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Pronta pra qualquer desafio</h3>
+                            <h4>XRE 300</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 02 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="/xre300.jpg" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Pronta pra qualquer desafio</h3>
+                            <h4>XRE 300</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 03 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="/xre300.jpg" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Pronta pra qualquer desafio</h3>
+                            <h4>XRE 300</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 04 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="/xre300.jpg" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Pronta pra qualquer desafio</h3>
+                            <h4>XRE 300</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 05 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="/xre300.jpg" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Pronta pra qualquer desafio</h3>
+                            <h4>XRE 300</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 06 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="/xre300.jpg" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Pronta pra qualquer desafio</h3>
+                            <h4>XRE 300</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 07 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="/xre300.jpg" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Pronta pra qualquer desafio</h3>
+                            <h4>XRE 300</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 08 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="/xre300.jpg" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Pronta pra qualquer desafio</h3>
+                            <h4>XRE 300</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 09 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="/xre300.jpg" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Pronta pra qualquer desafio</h3>
+                            <h4>XRE 300</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 10 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="/xre300.jpg" alt="Moto" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Pronta pra qualquer desafio</h3>
+                            <h4>XRE 300</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Off Road -->
+    <section id="offroad" class="offroad-section py-5" style="background-color: #f3f3f3;">
+
+        <div class="container">
+            <!-- Título -->
+            <h2 class="section-title text-center mb-5 position-relative">
+                <span class="title-text">Domine todos os terrenos</span>
+                Off Road
+            </h2>
+
+            <!-- Cards Grid -->
+            <div class="row g-4 animate-cards">
+                <!-- CARD 01 -->
+                <div class="col-12 col-md-6 col-lg-6">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="/crf250f.webp" alt="CRF 250F" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Força e adrenalina</h3>
+                            <h4>CRF 250F</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 02 -->
+                <div class="col-12 col-md-6 col-lg-6">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="/crf110f.webp" alt="CRF 110F" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Para os pequenos aventureiros</h3>
+                            <h4>CRF 110F</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Sport -->
+    <section id="sport" class="sport-section py-5" style="background-color: #fff5f5;">
+
+        <div class="container">
+            <!-- Título -->
+            <h2 class="section-title text-center mb-5 position-relative">
+                <span class="title-text">Velocidade e emoção</span>
+                Sport
+            </h2>
+
+            <!-- Card Único -->
+            <div class="row justify-content-center g-4 animate-cards">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="moto-card">
+                        <div class="card-image">
+                            <img src="/cbr-1000rr.jpg" alt="CBR 1000RR" width="100px">
+                        </div>
+                        <div class="card-content">
+                            <h3>Pura performance</h3>
+                            <h4>CBR 1000RR Fireblade</h4>
+                            <button class="btn-moto">
+                                Tenho Interesse
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Contato -->
+    <section class="contato-section py-5" style="background-color: #1c1c1c;">
+        <div class="container d-flex justify-content-center">
+            <div class="w-100" style="max-width: 700px;">
+                <!-- Título -->
+                <h2 class="section-title text-center mb-5 position-relative text-white">
+                    <span class="title-text">Fale com a gente</span>
+                    Contato
+                </h2>
+
+                <!-- Formulário -->
+                <div class="bg-white p-4 p-md-5 rounded-4 shadow-lg">
+                    <form>
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="nome" placeholder="Nome" required>
+                                    <label for="nome">Nome</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="sobrenome" placeholder="Sobrenome"
+                                        required>
+                                    <label for="sobrenome">Sobrenome</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="email" placeholder="Email" required>
+                            <label for="email">Email</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="cpf" placeholder="CPF" required>
+                            <label for="cpf">CPF</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="fone" placeholder="Fone" required>
+                            <label for="fone">Fone</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="cidade" aria-label="Cidade">
+                                <option selected>Selecione sua cidade</option>
+                                <option value="1">Cidade A</option>
+                                <option value="2">Cidade B</option>
+                            </select>
+                            <label for="cidade">Qual a sua cidade?</label>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <select class="form-select" id="modelo" aria-label="Modelo">
+                                <option selected>Selecione um modelo</option>
+                                <option value="1">Modelo 1</option>
+                                <option value="2">Modelo 2</option>
+                            </select>
+                            <label for="modelo">Selecione o Modelo</label>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-danger btn-lg">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Adicione isto antes dos scripts no final do body -->
+    <div class="modal fade" id="interesseModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title">Tenho interesse na moto</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formInteresse">
+                        <div class="mb-3">
+                            <label for="modeloMoto" class="form-label">Modelo selecionado</label>
+                            <select class="form-select" id="modeloMoto" required disabled>
+                                <option value="">Carregando modelos...</option>
+                                <!-- As opções serão preenchidas via JavaScript -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="nomecompleto" placeholder="Nome completo"
+                                    required>
+                                <label for="nomecompleto">Nome</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-floating">
+                                <input type="tel" class="form-control" id="telefone" placeholder="Telefone" required>
+                                <label for="telefone" class="form-label">Telefone</label>
+                            </div>
+
+                        </div>
+                        <button type="submit" class="btn btn-danger w-100">Enviar interesse</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Atualize o script existente com este código
+        $(document).ready(function () {
+            // Função para inicializar o modal
+            function initModal(modelo) {
+                const $select = $('#modeloMoto');
+
+                // Se já não tiver as opções, carrega elas
+                if ($select.children().length <= 1) {
+                    const modelos = Array.from(new Set($('.card-content h4').map((i, el) => $(el).text().trim()).get()));
+                    $select.empty().append('<option value="">Selecione um modelo</option>');
+
+                    modelos.forEach(modelo => {
+                        $select.append(`<option value="${modelo}">${modelo}</option>`);
+                    });
+                }
+
+                // Define o valor e desabilita
+                $select.val(modelo).prop('disabled', true);
+            }
+
+            // Evento de clique nos botões
+            $('.btn-moto').click(function (e) {
+                e.preventDefault();
+                const modelo = $(this).closest('.card-content').find('h4').text().trim();
+                initModal(modelo);
+                new bootstrap.Modal('#interesseModal').show();
+            });
+
+            // Submit do formulário
+            $('#formInteresse').submit(function (e) {
+                e.preventDefault();
+                // Aqui você pode adicionar o código para enviar os dados
+                alert('Interesse registrado com sucesso! Entraremos em contato em breve.');
+                $('#interesseModal').modal('hide');
+            });
+
+
+        });
+    </script>
 
     <script>
         $(document).ready(function () {
@@ -646,6 +1113,22 @@
             $(window).resize(adjustHeights);
         });
     </script>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+
 </body>
 
 </html>
